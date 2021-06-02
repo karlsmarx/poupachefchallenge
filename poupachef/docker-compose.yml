@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  db:
+    image: mysql:5.7
+    networks:
+      - spring-boot-mysql-network
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=poupachef
+      - MYSQL_DATABASE=poupachef
+      - MYSQL_USER=poupachef
+      - MYSQL_PASSWORD=poupachef
+
+  springboot:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    image: springboot
+    ports:
+      - "8080:8080"
+    networks:
+      - spring-boot-mysql-network
+    depends_on:
+      - db
+
+networks:
+  spring-boot-mysql-network:
+    driver: bridge

@@ -1,0 +1,1 @@
+INSERT INTO suppliers (name) values ('Supplier 1'), ('Supplier 2')
